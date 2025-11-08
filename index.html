@@ -318,6 +318,92 @@
             font-size: 1rem;
         }
 
+        /* Video Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-container {
+            position: relative;
+            max-width: 1200px;
+            width: 100%;
+            background: #000;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(128, 0, 32, 0.6);
+        }
+
+        .video-header {
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a1f 100%);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #800020;
+        }
+
+        .video-title {
+            color: #fff;
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .close-modal {
+            background: transparent;
+            border: 2px solid #800020;
+            color: #ff4081;
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #800020;
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: #000;
+        }
+
+        .video-wrapper video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            outline: none;
+        }
+
+        /* Disable right-click on video */
+        video {
+            pointer-events: none;
+        }
+
+        .video-controls {
+            pointer-events: auto;
+        }
+
         /* Contact Section */
         .contact-container {
             max-width: 600px;
@@ -489,14 +575,14 @@
         <h2>About Me</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>I'm a passionate creative professional dedicated to crafting exceptional digital experiences. With a keen eye for design and a love for clean, efficient code, I bring ideas to life.</p>
-                <p>My approach combines modern aesthetics with functionality, ensuring every project not only looks stunning but performs flawlessly.</p>
+                <p>I'm a passionate videographer and director dedicated to crafting compelling visual stories. With a keen eye for composition and a love for cinematic storytelling, I bring creative visions to life.</p>
+                <p>My approach combines technical expertise with artistic vision, ensuring every project not only looks stunning but resonates emotionally with audiences.</p>
                 <div class="skills">
-                    <span class="skill-tag">UI/UX Design</span>
-                    <span class="skill-tag">Web Development</span>
-                    <span class="skill-tag">Branding</span>
-                    <span class="skill-tag">Graphic Design</span>
-                    <span class="skill-tag">Animation</span>
+                    <span class="skill-tag">Video Editing</span>
+                    <span class="skill-tag">Cinematography</span>
+                    <span class="skill-tag">Color Grading</span>
+                    <span class="skill-tag">Motion Graphics</span>
+                    <span class="skill-tag">Audio Design</span>
                     <span class="skill-tag">Creative Direction</span>
                 </div>
             </div>
@@ -512,44 +598,60 @@
     <section id="work">
         <h2>My Work</h2>
         <div class="gallery-grid">
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video1', 'Documentary Film', 'YOUR_VIDEO_URL_1.mp4')">
                 <div class="gallery-content">
                     <h3>Project One</h3>
-                    <p>Web Design & Development</p>
+                    <p>Documentary Film</p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video2', 'Commercial Video', 'YOUR_VIDEO_URL_2.mp4')">
                 <div class="gallery-content">
                     <h3>Project Two</h3>
-                    <p>Brand Identity Design</p>
+                    <p>Commercial Video</p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video3', 'Music Video', 'YOUR_VIDEO_URL_3.mp4')">
                 <div class="gallery-content">
                     <h3>Project Three</h3>
-                    <p>UI/UX Case Study</p>
+                    <p>Music Video</p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video4', 'Short Film', 'YOUR_VIDEO_URL_4.mp4')">
                 <div class="gallery-content">
                     <h3>Project Four</h3>
-                    <p>Mobile App Design</p>
+                    <p>Short Film</p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video5', 'Event Coverage', 'YOUR_VIDEO_URL_5.mp4')">
                 <div class="gallery-content">
                     <h3>Project Five</h3>
-                    <p>Creative Direction</p>
+                    <p>Event Coverage</p>
                 </div>
             </div>
-            <div class="gallery-item">
+            <div class="gallery-item" onclick="openVideo('video6', 'Brand Video', 'YOUR_VIDEO_URL_6.mp4')">
                 <div class="gallery-content">
                     <h3>Project Six</h3>
-                    <p>Digital Illustration</p>
+                    <p>Brand Video</p>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-container">
+            <div class="video-header">
+                <div class="video-title" id="videoTitle">Video Title</div>
+                <button class="close-modal" onclick="closeVideo()">Close ✕</button>
+            </div>
+            <div class="video-wrapper">
+                <video id="modalVideo" controls controlsList="nodownload" oncontextmenu="return false;">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </div>
 
     <!-- Contact Section -->
     <section id="contact">
@@ -557,7 +659,7 @@
         <div class="contact-container">
             <form id="contactForm" action="https://formspree.io/f/mnnladay" method="POST">
                 <div class="form-group">
-                    <label for="name">Abhishek Bind</label>
+                    <label for="name">Name</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
@@ -580,6 +682,62 @@
     </footer>
 
     <script>
+        // Video Modal Functions
+        function openVideo(videoId, title, videoUrl) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            const videoSource = document.getElementById('videoSource');
+            const videoTitle = document.getElementById('videoTitle');
+            
+            videoTitle.textContent = title;
+            videoSource.src = videoUrl;
+            video.load();
+            modal.classList.add('active');
+            video.play();
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            
+            video.pause();
+            video.currentTime = 0;
+            modal.classList.remove('active');
+        }
+
+        // Close modal when clicking outside video
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideo();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeVideo();
+            }
+        });
+
+        // Prevent video download attempts
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.getElementById('modalVideo');
+            
+            // Disable right-click
+            video.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable keyboard shortcuts for downloading
+            video.addEventListener('keydown', function(e) {
+                if (e.ctrlKey && (e.key === 's' || e.key === 'S')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+
         // Smooth scrolling for navigation
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -590,6 +748,7 @@
                     block: 'start'
                 });
             });
+        });
         });
 
         // Form submission
