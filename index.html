@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #0a0a0a;
+            background: #000000;
             color: #fff;
             overflow-x: hidden;
         }
@@ -22,11 +22,12 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             padding: 1.5rem 5%;
             z-index: 1000;
-            border-bottom: 1px solid rgba(128, 0, 32, 0.3);
+            border-bottom: 1px solid rgba(0, 191, 255, 0.3);
+            box-shadow: 0 4px 30px rgba(0, 191, 255, 0.1);
         }
 
         nav ul {
@@ -52,8 +53,9 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, #800020, #ff4081);
+            background: linear-gradient(90deg, #00BFFF, #0080FF);
             transition: width 0.3s ease;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
         }
 
         nav a:hover::after {
@@ -61,7 +63,8 @@
         }
 
         nav a:hover {
-            color: #ff4081;
+            color: #00BFFF;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
         }
 
         .hero {
@@ -70,7 +73,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0f 50%, #0a0a0a 100%);
+            background: linear-gradient(135deg, #000000 0%, #001a33 50%, #000000 100%);
             position: relative;
             overflow: hidden;
         }
@@ -80,10 +83,11 @@
             position: absolute;
             width: 500px;
             height: 500px;
-            background: radial-gradient(circle, rgba(128, 0, 32, 0.3) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, transparent 70%);
             top: -250px;
             right: -250px;
             animation: float 6s ease-in-out infinite;
+            filter: blur(80px);
         }
 
         .hero::after {
@@ -91,10 +95,11 @@
             position: absolute;
             width: 400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(128, 0, 32, 0.2) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
             bottom: -200px;
             left: -200px;
             animation: float 8s ease-in-out infinite reverse;
+            filter: blur(80px);
         }
 
         @keyframes float {
@@ -122,33 +127,39 @@
         .hero h1 {
             font-size: 4rem;
             margin-bottom: 1rem;
-            background: linear-gradient(135deg, #fff 0%, #ff4081 100%);
+            background: linear-gradient(135deg, #00BFFF 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.6));
         }
 
         .hero p {
             font-size: 1.5rem;
-            color: #ccc;
+            color: #cccccc;
             margin-bottom: 2rem;
+            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
         }
 
         .cta-button {
             display: inline-block;
             padding: 1rem 2.5rem;
-            background: linear-gradient(135deg, #800020 0%, #ff4081 100%);
-            color: #fff;
+            background: rgba(0, 191, 255, 0.15);
+            color: #00BFFF;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(128, 0, 32, 0.4);
+            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(0, 191, 255, 0.4);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.5);
+            background: rgba(0, 191, 255, 0.25);
+            border-color: #00BFFF;
         }
 
         section {
@@ -161,10 +172,11 @@
             font-size: 3rem;
             margin-bottom: 3rem;
             text-align: center;
-            background: linear-gradient(135deg, #fff 0%, #ff4081 100%);
+            background: linear-gradient(135deg, #00BFFF 0%, #ffffff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.5));
         }
 
         .about-content {
@@ -190,36 +202,53 @@
 
         .skill-tag {
             padding: 0.7rem 1.5rem;
-            background: rgba(128, 0, 32, 0.2);
-            border: 2px solid #800020;
+            background: rgba(0, 191, 255, 0.1);
+            border: 2px solid rgba(0, 191, 255, 0.4);
             border-radius: 25px;
-            color: #ff4081;
+            color: #00BFFF;
             font-weight: 500;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.1);
         }
 
         .skill-tag:hover {
-            background: rgba(128, 0, 32, 0.4);
+            background: rgba(0, 191, 255, 0.2);
             transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
+            border-color: #00BFFF;
         }
 
         .gallery-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .vertical-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
         }
 
         .gallery-item {
             position: relative;
-            height: 300px;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a1f 100%);
+            width: 100%;
+            padding-bottom: 56.25%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #001a33 100%);
             border-radius: 15px;
             overflow: hidden;
             cursor: pointer;
             transition: all 0.4s ease;
-            border: 2px solid transparent;
+            border: 2px solid rgba(0, 191, 255, 0.2);
             background-size: cover;
             background-position: center;
+            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.1);
+        }
+
+        .gallery-item.vertical {
+            padding-bottom: 177.78%;
         }
 
         .gallery-item::after {
@@ -229,11 +258,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 4rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: #00BFFF;
             opacity: 0;
             transition: all 0.3s ease;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            text-shadow: 0 4px 30px rgba(0, 191, 255, 1);
             z-index: 3;
+            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 1));
         }
 
         .gallery-item:hover::after {
@@ -243,8 +273,8 @@
 
         .gallery-item:hover {
             transform: translateY(-10px);
-            border-color: #800020;
-            box-shadow: 0 20px 50px rgba(128, 0, 32, 0.4);
+            border-color: #00BFFF;
+            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.4);
         }
 
         .gallery-item::before {
@@ -254,7 +284,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(128, 0, 32, 0.4) 0%, rgba(0, 0, 0, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
             opacity: 0;
             transition: opacity 0.4s ease;
         }
@@ -268,11 +298,12 @@
             bottom: 0;
             left: 0;
             right: 0;
-            padding: 2rem;
+            padding: 1.5rem;
             transform: translateY(20px);
             opacity: 0;
             transition: all 0.4s ease;
             z-index: 2;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
         }
 
         .gallery-item:hover .gallery-content {
@@ -281,14 +312,57 @@
         }
 
         .gallery-content h3 {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             margin-bottom: 0.5rem;
             color: #fff;
         }
 
         .gallery-content p {
             color: #ccc;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .gallery-content .video-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            background: rgba(0, 191, 255, 0.2);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: #00BFFF;
+            margin-top: 0.5rem;
+            border: 1px solid rgba(0, 191, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 4rem 0 3rem 0;
+            position: relative;
+        }
+
+        .section-divider h3 {
+            font-size: 2rem;
+            color: #00BFFF;
+            display: inline-block;
+            padding: 0 2rem;
+            background: #000000;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 0 30px rgba(0, 191, 255, 0.8);
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(0, 191, 255, 0.6) 50%, transparent 100%);
+            z-index: 0;
+            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
         }
 
         .video-modal {
@@ -316,39 +390,43 @@
             background: #000;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(128, 0, 32, 0.6);
+            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.3);
+            border: 1px solid rgba(0, 191, 255, 0.3);
         }
 
         .video-header {
             padding: 1.5rem;
-            background: linear-gradient(135deg, #1a1a1a 0%, #2a1a1f 100%);
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 2px solid #800020;
+            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
         }
 
         .video-title {
-            color: #fff;
+            color: #00BFFF;
             font-size: 1.3rem;
             font-weight: 600;
         }
 
         .close-modal {
-            background: transparent;
-            border: 2px solid #800020;
-            color: #ff4081;
+            background: rgba(0, 191, 255, 0.15);
+            border: 2px solid rgba(0, 191, 255, 0.5);
+            color: #00BFFF;
             padding: 0.5rem 1.5rem;
             border-radius: 25px;
             cursor: pointer;
             font-weight: 600;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .close-modal:hover {
-            background: #800020;
-            color: #fff;
+            background: rgba(0, 191, 255, 0.25);
+            color: #00BFFF;
             transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.5);
         }
 
         .video-wrapper {
@@ -370,10 +448,12 @@
         .contact-container {
             max-width: 600px;
             margin: 0 auto;
-            background: rgba(128, 0, 32, 0.1);
+            background: rgba(0, 191, 255, 0.05);
             padding: 3rem;
             border-radius: 20px;
-            border: 2px solid rgba(128, 0, 32, 0.3);
+            border: 2px solid rgba(0, 191, 255, 0.2);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.1);
         }
 
         .form-group {
@@ -383,7 +463,7 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: #ff4081;
+            color: #00BFFF;
             font-weight: 500;
         }
 
@@ -391,19 +471,21 @@
         .form-group textarea {
             width: 100%;
             padding: 1rem;
-            background: rgba(10, 10, 10, 0.8);
-            border: 2px solid rgba(128, 0, 32, 0.3);
+            background: rgba(0, 191, 255, 0.05);
+            border: 2px solid rgba(0, 191, 255, 0.3);
             border-radius: 10px;
             color: #fff;
             font-size: 1rem;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #800020;
-            box-shadow: 0 0 20px rgba(128, 0, 32, 0.3);
+            border-color: #00BFFF;
+            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
+            background: rgba(0, 191, 255, 0.08);
         }
 
         .form-group textarea {
@@ -414,30 +496,53 @@
         .submit-button {
             width: 100%;
             padding: 1rem;
-            background: linear-gradient(135deg, #800020 0%, #ff4081 100%);
-            color: #fff;
-            border: none;
+            background: rgba(0, 191, 255, 0.15);
+            color: #00BFFF;
+            border: 2px solid rgba(0, 191, 255, 0.5);
             border-radius: 50px;
             font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
 
         .submit-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(128, 0, 32, 0.6);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
+            background: rgba(0, 191, 255, 0.25);
+            border-color: #00BFFF;
         }
 
         footer {
             text-align: center;
             padding: 3rem 5%;
-            background: #050505;
-            border-top: 2px solid rgba(128, 0, 32, 0.3);
+            background: #000000;
+            border-top: 2px solid rgba(0, 191, 255, 0.2);
         }
 
         footer p {
             color: #888;
+        }
+
+        @media (max-width: 1400px) {
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .vertical-gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .vertical-gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         @media (max-width: 768px) {
@@ -462,7 +567,29 @@
             }
 
             .gallery-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .vertical-gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .section-divider h3 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+
+            .vertical-gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
             }
         }
     </style>
@@ -507,8 +634,8 @@
                 </div>
             </div>
             <div class="about-image">
-                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(128, 0, 32, 0.3) 0%, rgba(0, 0, 0, 0.5) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid #800020;">
-                    <p style="font-size: 1.2rem; color: #888;">Your Photo Here</p>
+                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, rgba(0, 191, 255, 0.15) 0%, rgba(0, 191, 255, 0.05) 100%); border-radius: 20px; display: flex; align-items: center; justify-content: center; border: 2px solid rgba(0, 191, 255, 0.3); backdrop-filter: blur(10px);">
+                    <p style="font-size: 1.2rem; color: #00BFFF;">Your Photo Here</p>
                 </div>
             </div>
         </div>
@@ -516,29 +643,75 @@
 
     <section id="work">
         <h2>My Work</h2>
+        
+        <!-- Horizontal Videos Section -->
+        <div class="section-divider">
+            <h3>Horizontal Content</h3>
+        </div>
+        
         <div class="gallery-grid">
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/QsXyP8juI_w/maxresdefault.jpg');" onclick="openVideo('Ek Villain', 'QsXyP8juI_w')">
+            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/QsXyP8juI_w/maxresdefault.jpg');" onclick="openVideo('Ek Villain - Personal Video', 'QsXyP8juI_w')">
                 <div class="gallery-content">
-                    <h3>Personal Video</h3>
-                    <p>Ek Villain</p>
+                    <h3>Ek Villain</h3>
+                    <p>A cinematic personal video showcasing creative storytelling and visual effects.</p>
+                    <span class="video-type">Personal Project</span>
                 </div>
             </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/lIoJkUvp4nE/maxresdefault.jpg');" onclick="openVideo('Youtube Facecam Video', 'lIoJkUvp4nE')">
+            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/lIoJkUvp4nE/maxresdefault.jpg');" onclick="openVideo('When to Quit CA - YouTube Facecam', 'lIoJkUvp4nE')">
                 <div class="gallery-content">
                     <h3>When to Quit CA</h3>
-                    <p>Youtube Facecam Video</p>
+                    <p>Professional facecam video with engaging narrative and clean editing.</p>
+                    <span class="video-type">YouTube Content</span>
                 </div>
             </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/pnvkeEekNL0/maxresdefault.jpg');" onclick="openVideo('ISFB Launch Video', 'pnvkeEekNL0')">
+            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/pnvkeEekNL0/maxresdefault.jpg');" onclick="openVideo('The REAL Pedagogy - ISFB Launch', 'pnvkeEekNL0')">
                 <div class="gallery-content">
                     <h3>The REAL Pedagogy</h3>
-                    <p>ISFB Launch Video</p>
+                    <p>High-impact brand launch video combining motion graphics and compelling visuals.</p>
+                    <span class="video-type">Brand Video</span>
                 </div>
             </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/1YWbUlts7sE/maxresdefault.jpg');" onclick="openVideo('Journey Film', '1YWbUlts7sE')">
+            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/1YWbUlts7sE/maxresdefault.jpg');" onclick="openVideo('Imarticus Success Story', '1YWbUlts7sE')">
                 <div class="gallery-content">
-                    <h3>Imarticus Student Success Story</h3>
-                    <p>Journey Film</p>
+                    <h3>Student Success Story</h3>
+                    <p>Emotional journey film showcasing student transformation and achievement.</p>
+                    <span class="video-type">Documentary</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vertical Videos Section -->
+        <div class="section-divider">
+            <h3>Vertical Content</h3>
+        </div>
+        
+        <div class="vertical-gallery-grid">
+            <div class="gallery-item vertical" style="background-image: url('https://img.youtube.com/vi/YOUR_VERTICAL_VIDEO_ID_1/maxresdefault.jpg');" onclick="openVideo('Vertical Video 1', 'YOUR_VERTICAL_VIDEO_ID_1')">
+                <div class="gallery-content">
+                    <h3>Reel Title 1</h3>
+                    <p>Short description of your first vertical video.</p>
+                    <span class="video-type">Reel</span>
+                </div>
+            </div>
+            <div class="gallery-item vertical" style="background-image: url('https://img.youtube.com/vi/YOUR_VERTICAL_VIDEO_ID_2/maxresdefault.jpg');" onclick="openVideo('Vertical Video 2', 'YOUR_VERTICAL_VIDEO_ID_2')">
+                <div class="gallery-content">
+                    <h3>Reel Title 2</h3>
+                    <p>Short description of your second vertical video.</p>
+                    <span class="video-type">Short</span>
+                </div>
+            </div>
+            <div class="gallery-item vertical" style="background-image: url('https://img.youtube.com/vi/YOUR_VERTICAL_VIDEO_ID_3/maxresdefault.jpg');" onclick="openVideo('Vertical Video 3', 'YOUR_VERTICAL_VIDEO_ID_3')">
+                <div class="gallery-content">
+                    <h3>Reel Title 3</h3>
+                    <p>Short description of your third vertical video.</p>
+                    <span class="video-type">Reel</span>
+                </div>
+            </div>
+            <div class="gallery-item vertical" style="background-image: url('https://img.youtube.com/vi/YOUR_VERTICAL_VIDEO_ID_4/maxresdefault.jpg');" onclick="openVideo('Vertical Video 4', 'YOUR_VERTICAL_VIDEO_ID_4')">
+                <div class="gallery-content">
+                    <h3>Reel Title 4</h3>
+                    <p>Short description of your fourth vertical video.</p>
+                    <span class="video-type">Short</span>
                 </div>
             </div>
         </div>
