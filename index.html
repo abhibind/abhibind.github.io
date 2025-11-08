@@ -479,7 +479,7 @@
     <section id="home" class="hero">
         <div class="hero-content">
             <h1>Hi, I'm Abhishek Bind</h1>
-            <p>Creative Professional | Designer | Developer</p>
+            <p>Videographer/Editor | Director</p>
             <a href="#work" class="cta-button">View My Work</a>
         </div>
     </section>
@@ -555,9 +555,9 @@
     <section id="contact">
         <h2>Get In Touch</h2>
         <div class="contact-container">
-            <form id="contactForm">
+            <form id="contactForm" action="https://formspree.io/f/mnnladay" method="POST">
                 <div class="form-group">
-                    <label for="name">Name</label>
+                    <label for="name">Abhishek Bind</label>
                     <input type="text" id="name" name="name" required>
                 </div>
                 <div class="form-group">
@@ -570,6 +570,7 @@
                 </div>
                 <button type="submit" class="submit-button">Send Message</button>
             </form>
+            <div id="formStatus" style="margin-top: 1rem; text-align: center; display: none;"></div>
         </div>
     </section>
 
@@ -594,8 +595,44 @@
         // Form submission
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('Thank you for your message! I will get back to you soon.');
-            this.reset();
+            const form = e.target;
+            const formData = new FormData(form);
+            const statusDiv = document.getElementById('formStatus');
+            const submitButton = form.querySelector('.submit-button');
+            
+            // Disable button and show loading
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+            
+            fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    statusDiv.style.display = 'block';
+                    statusDiv.style.color = '#4ade80';
+                    statusDiv.textContent = '✓ Message sent successfully! I will get back to you soon.';
+                    form.reset();
+                } else {
+                    throw new Error('Failed to send message');
+                }
+            })
+            .catch(error => {
+                statusDiv.style.display = 'block';
+                statusDiv.style.color = '#ff4081';
+                statusDiv.textContent = '✗ Oops! Something went wrong. Please try again.';
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+                setTimeout(() => {
+                    statusDiv.style.display = 'none';
+                }, 5000);
+            });
         });
 
         // Intersection Observer for animations
