@@ -1,0 +1,141 @@
+/* =====================================================================
+   EDIT MODE STYLES — only loaded when the link ends with ?edit
+   ===================================================================== */
+.pfe-ui {
+  --pe-bg: #111111; --pe-ink: #f3f2ef; --pe-muted: #9a9995; --pe-line: rgba(255, 255, 255, .12);
+  --pe-card: #ffffff; --pe-card-ink: #111111; --pe-card-muted: #6e6d69; --pe-card-line: rgba(0, 0, 0, .12);
+  --pe-blue: #3b8ef0;
+  font-family: var(--sans, "Inter Tight", system-ui, sans-serif);
+  font-size: 14px; line-height: 1.4; letter-spacing: 0; text-transform: none;
+}
+.pfe-ui [hidden] { display: none !important; }
+.pfe-ui button { font: inherit; color: inherit; cursor: pointer; }
+.pfe-ui button:disabled { opacity: .45; cursor: default; }
+
+/* Normal mouse pointer while editing (the custom cursor is paused) */
+.pfe-on .cursor-dot, .pfe-on .cursor-ring { display: none !important; }
+.pfe-on.has-cursor, .pfe-on.has-cursor * { cursor: auto !important; }
+.pfe-on [data-pfe], .pfe-on [data-pfe] * { cursor: pointer !important; }
+.has-cursor .pfe-ui, .has-cursor .pfe-ui * { cursor: auto !important; }
+.has-cursor .pfe-ui button, .has-cursor .pfe-ui summary, .has-cursor .pfe-ui a { cursor: pointer !important; }
+.has-cursor .pfe-ui textarea, .has-cursor .pfe-ui input { cursor: text !important; }
+
+/* Hovered text gets a dashed outline */
+.pfe-on .pfe-hover { outline: 1.5px dashed var(--pe-blue, #3b8ef0) !important; outline-offset: 5px; border-radius: 4px; }
+.pfe-on .hero.is-open .chip { opacity: 1; scale: 1; pointer-events: auto; }
+.pfe-on .hero.is-open .hero-side { opacity: 1; }
+.pfe-on .hero.is-open .hero-media { clip-path: inset(0 var(--side) 0 var(--side) round 20px); }
+
+/* ---------- Bottom bar ---------- */
+.pfe-bar {
+  position: fixed; left: 50%; bottom: 18px; z-index: 10020; translate: -50% 0;
+  display: flex; align-items: center; gap: 6px; max-width: calc(100vw - 24px); padding: 6px;
+  background: var(--pe-bg); color: var(--pe-ink); border: 1px solid var(--pe-line); border-radius: 999px;
+  box-shadow: 0 18px 50px -12px rgba(0, 0, 0, .55);
+}
+.pfe-bar > button, .pfe-lock button {
+  height: 36px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--pe-line); background: transparent; white-space: nowrap;
+  transition: background .2s, color .2s, border-color .2s;
+}
+.pfe-bar > button:hover:not(:disabled) { background: rgba(255, 255, 255, .08); }
+.pfe-ui .pfe-primary { background: var(--pe-ink); color: var(--pe-bg); border-color: var(--pe-ink); font-weight: 500; }
+.pfe-bar > .pfe-primary:hover:not(:disabled) { background: #fff; }
+.pfe-brand { display: inline-flex; align-items: center; gap: 8px; padding: 0 10px 0 12px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.pfe-brand i { width: 7px; height: 7px; border-radius: 50%; background: var(--pe-blue); box-shadow: 0 0 0 4px rgba(59, 142, 240, .22); }
+.pfe-count { padding: 0 10px; color: var(--pe-muted); font-size: 13px; white-space: nowrap; }
+.pfe-count.has { color: var(--pe-ink); }
+.pfe-bar.busy .pfe-count { color: var(--pe-ink); }
+.pfe-switch { display: inline-flex; align-items: center; gap: 8px; }
+.pfe-switch i { position: relative; width: 28px; height: 16px; border-radius: 999px; background: rgba(255, 255, 255, .2); transition: background .2s; }
+.pfe-switch i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; border-radius: 50%; background: #fff; transition: translate .2s; }
+.pfe-switch[aria-pressed="true"] i { background: var(--pe-blue); }
+.pfe-switch[aria-pressed="true"] i::after { translate: 12px 0; }
+.pfe-more-btn { letter-spacing: .1em; }
+.pfe-menu {
+  position: fixed; left: 50%; bottom: 74px; z-index: 10021; translate: -50% 0; display: flex; flex-direction: column; min-width: 240px; padding: 6px;
+  background: var(--pe-bg); border: 1px solid var(--pe-line); border-radius: 16px; box-shadow: 0 18px 50px -12px rgba(0, 0, 0, .55);
+}
+.pfe-menu button { padding: 10px 12px; border: 0; border-radius: 10px; background: none; text-align: left; }
+.pfe-menu button:hover { background: rgba(255, 255, 255, .08); }
+.pfe-lock { display: flex; align-items: center; gap: 6px; }
+
+/* ---------- Hover label ---------- */
+.pfe-tip {
+  position: fixed; z-index: 10015; padding: 4px 9px; border-radius: 6px; background: var(--pe-blue); color: #fff;
+  font-size: 12px; font-weight: 500; white-space: nowrap; pointer-events: none;
+}
+
+/* ---------- Shared card bits ---------- */
+.pfe-pop, .pfe-card, .pfe-drawer { background: var(--pe-card); color: var(--pe-card-ink); }
+.pfe-field { padding: 10px 0; border-top: 1px solid var(--pe-card-line); }
+.pfe-field:first-child { border-top: 0; }
+.pfe-field label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; color: var(--pe-card-muted); font-size: 12px; }
+.pfe-field.changed label span::after { content: " · changed"; color: var(--pe-blue); }
+.pfe-reset { border: 0; background: none; color: var(--pe-card-ink); font-size: 12px; text-decoration: underline; text-underline-offset: 2px; }
+.pfe-ui textarea, .pfe-ui input[type="text"], .pfe-ui input[type="password"], .pfe-ui input[type="search"] {
+  display: block; width: 100%; box-sizing: border-box; padding: 9px 11px; border: 1px solid var(--pe-card-line); border-radius: 10px;
+  background: #f6f5f2; color: var(--pe-card-ink); font: inherit; font-size: 15px; line-height: 1.4; resize: none; outline: none;
+  transition: border-color .15s, background .15s;
+}
+.pfe-ui textarea:focus, .pfe-ui input:focus { border-color: var(--pe-card-ink); background: #fff; }
+.pfe-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+.pfe-actions button { height: 38px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--pe-card-line); background: transparent; color: var(--pe-card-ink); }
+.pfe-actions .pfe-primary { background: var(--pe-card-ink); color: #fff; border-color: var(--pe-card-ink); }
+.pfe-x { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--pe-card-line); background: none; font-size: 12px; }
+
+/* ---------- Small editor next to the text ---------- */
+.pfe-pop {
+  position: fixed; z-index: 10030; width: min(420px, calc(100vw - 24px)); max-height: min(70vh, 640px); overflow: auto; padding: 14px 16px 16px;
+  border-radius: 18px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .5), 0 0 0 1px rgba(0, 0, 0, .06);
+  overscroll-behavior: contain;
+}
+.pfe-pop.sheet { left: 0 !important; right: 0; bottom: 0; top: auto !important; width: 100%; max-height: 75vh; border-radius: 20px 20px 0 0; padding-bottom: calc(16px + env(safe-area-inset-bottom)); }
+.pfe-pop-head, .pfe-drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 6px; }
+.pfe-pop-head b, .pfe-drawer-head b { font-size: 15px; font-weight: 600; }
+
+/* ---------- "All text" panel ---------- */
+.pfe-drawer {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 10030; width: min(440px, 100vw); display: flex; flex-direction: column; gap: 12px;
+  padding: 16px 18px 0; box-shadow: -30px 0 80px -20px rgba(0, 0, 0, .5); translate: 100% 0; transition: translate .3s cubic-bezier(.2, .8, .2, 1);
+  overscroll-behavior: contain;
+}
+.pfe-drawer.open { translate: 0 0; }
+.pfe-groups { flex: 1; overflow: auto; margin: 0 -18px; padding: 0 18px 90px; }
+.pfe-group { border-bottom: 1px solid var(--pe-card-line); }
+.pfe-group summary { display: flex; justify-content: space-between; align-items: center; padding: 13px 0; font-weight: 600; list-style: none; }
+.pfe-group summary::-webkit-details-marker { display: none; }
+.pfe-group summary::after { content: "+"; margin-left: 10px; color: var(--pe-card-muted); font-weight: 400; }
+.pfe-group[open] summary::after { content: "–"; }
+.pfe-group summary small { margin-left: auto; color: var(--pe-card-muted); font-weight: 400; }
+.pfe-group[open] { padding-bottom: 8px; }
+.pfe-note { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; padding: 12px 18px; background: var(--pe-card); border-top: 1px solid var(--pe-card-line); color: var(--pe-card-muted); font-size: 12px; }
+
+/* ---------- Messages ---------- */
+.pfe-modal { position: fixed; inset: 0; z-index: 10040; display: grid; place-items: center; padding: 16px; background: rgba(0, 0, 0, .55); }
+.pfe-card { width: min(460px, 100%); max-height: calc(100vh - 32px); overflow: auto; padding: 22px; border-radius: 20px; box-shadow: 0 30px 80px -20px rgba(0, 0, 0, .6); }
+.pfe-card h3 { margin: 0 0 8px; font-size: 20px; font-weight: 600; letter-spacing: -.01em; }
+.pfe-card p { margin: 0 0 14px; color: var(--pe-card-muted); }
+.pfe-card a { color: var(--pe-card-ink); text-decoration: underline; text-underline-offset: 2px; }
+.pfe-card b { color: var(--pe-card-ink); }
+.pfe-signin label { display: block; margin-bottom: 12px; color: var(--pe-card-muted); font-size: 12px; }
+.pfe-signin label input { margin-top: 6px; }
+.pfe-signin details { margin: 4px 0 8px; }
+.pfe-signin summary { margin-bottom: 10px; color: var(--pe-card-ink); font-size: 13px; }
+.pfe-ui .pfe-err { padding: 10px 12px; border-radius: 10px; background: #fdecec; color: #9b1c1c; font-size: 13px; }
+.pfe-toast {
+  position: fixed; left: 50%; bottom: 80px; z-index: 10050; translate: -50% 12px; max-width: calc(100vw - 32px); padding: 10px 16px;
+  border-radius: 999px; background: var(--pe-ink); color: var(--pe-bg); font-size: 13px; opacity: 0; pointer-events: none;
+  transition: opacity .25s, translate .25s; box-shadow: 0 12px 40px -12px rgba(0, 0, 0, .5);
+}
+.pfe-toast.show { opacity: 1; translate: -50% 0; }
+
+/* ---------- Phones ---------- */
+@media (max-width: 720px) {
+  .pfe-bar { bottom: 10px; overflow-x: auto; scrollbar-width: none; justify-content: flex-start; }
+  .pfe-bar::-webkit-scrollbar { display: none; }
+  .pfe-bar .pfe-brand { display: none; }
+  .pfe-lock .pfe-brand { display: inline-flex; letter-spacing: .06em; }
+  .pfe-bar > button { padding: 0 12px; }
+  .pfe-menu { bottom: 64px; }
+  .pfe-toast { bottom: 70px; border-radius: 14px; }
+}

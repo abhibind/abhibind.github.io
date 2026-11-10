@@ -1,941 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Abhishek Bind - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #000000;
-            color: #fff;
-            overflow-x: hidden;
-        }
-
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            padding: 1.5rem 5%;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(0, 191, 255, 0.3);
-            box-shadow: 0 4px 30px rgba(0, 191, 255, 0.1);
-        }
-
-        nav ul {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            list-style: none;
-        }
-
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, #00BFFF, #0080FF);
-            transition: width 0.3s ease;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
-        }
-
-        nav a:hover::after {
-            width: 100%;
-        }
-
-        nav a:hover {
-            color: #00BFFF;
-            text-shadow: 0 0 20px rgba(0, 191, 255, 0.8);
-        }
-
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(135deg, #000000 0%, #001a33 50%, #000000 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(0, 191, 255, 0.2) 0%, transparent 70%);
-            top: -250px;
-            right: -250px;
-            animation: float 6s ease-in-out infinite;
-            filter: blur(80px);
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(0, 191, 255, 0.15) 0%, transparent 70%);
-            bottom: -200px;
-            left: -200px;
-            animation: float 8s ease-in-out infinite reverse;
-            filter: blur(80px);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #00BFFF 0%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.6));
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: #cccccc;
-            margin-bottom: 2rem;
-            text-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: rgba(0, 191, 255, 0.15);
-            color: #00BFFF;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 191, 255, 0.3);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(0, 191, 255, 0.4);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.5);
-            background: rgba(0, 191, 255, 0.25);
-            border-color: #00BFFF;
-        }
-
-        section {
-            padding: 6rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        h2 {
-            font-size: 3rem;
-            margin-bottom: 3rem;
-            text-align: center;
-            background: linear-gradient(135deg, #00BFFF 0%, #ffffff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 0.5));
-        }
-
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-            margin-bottom: 3rem;
-        }
-
-        .about-image {
-            order: 1;
-        }
-
-        .about-text {
-            order: 2;
-        }
-
-        .about-text p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            color: #ccc;
-            margin-bottom: 1.5rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .skill-tag {
-            padding: 0.7rem 1.5rem;
-            background: rgba(0, 191, 255, 0.1);
-            border: 2px solid rgba(0, 191, 255, 0.4);
-            border-radius: 25px;
-            color: #00BFFF;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.1);
-        }
-
-        .skill-tag:hover {
-            background: rgba(0, 191, 255, 0.2);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.3);
-            border-color: #00BFFF;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-bottom: 4rem;
-        }
-
-        .vertical-gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
-
-        .gallery-item {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: linear-gradient(135deg, #0a0a0a 0%, #001a33 100%);
-            border-radius: 15px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border: 2px solid rgba(0, 191, 255, 0.2);
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.1);
-        }
-
-        .gallery-item.vertical {
-            padding-bottom: 177.78%;
-        }
-
-        .gallery-item::after {
-            content: '▶';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 4rem;
-            color: #00BFFF;
-            opacity: 0;
-            transition: all 0.3s ease;
-            text-shadow: 0 4px 30px rgba(0, 191, 255, 1);
-            z-index: 3;
-            filter: drop-shadow(0 0 20px rgba(0, 191, 255, 1));
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1.2);
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-            border-color: #00BFFF;
-            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.4);
-        }
-
-        .gallery-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(0, 191, 255, 0.2) 0%, rgba(0, 0, 0, 0.8) 100%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-
-        .gallery-item:hover::before {
-            opacity: 1;
-        }
-
-        .gallery-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 1.5rem;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.4s ease;
-            z-index: 2;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, transparent 100%);
-        }
-
-        .gallery-item:hover .gallery-content {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        .gallery-content h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: #fff;
-        }
-
-        .gallery-content p {
-            color: #ccc;
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-            line-height: 1.5;
-        }
-
-        .gallery-content .video-type {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            background: rgba(0, 191, 255, 0.2);
-            border-radius: 15px;
-            font-size: 0.8rem;
-            color: #00BFFF;
-            margin-top: 0.5rem;
-            border: 1px solid rgba(0, 191, 255, 0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .section-divider {
-            text-align: center;
-            margin: 4rem 0 3rem 0;
-            position: relative;
-        }
-
-        .section-divider h3 {
-            font-size: 2rem;
-            color: #00BFFF;
-            display: inline-block;
-            padding: 0 2rem;
-            background: #000000;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 0 30px rgba(0, 191, 255, 0.8);
-        }
-
-        .section-divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent 0%, rgba(0, 191, 255, 0.6) 50%, transparent 100%);
-            z-index: 0;
-            box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
-        }
-
-        .video-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-        }
-
-        .video-modal.active {
-            display: flex;
-        }
-
-        .video-container {
-            position: relative;
-            max-width: 1200px;
-            width: 100%;
-            background: #000;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 191, 255, 0.3);
-            border: 1px solid rgba(0, 191, 255, 0.3);
-        }
-
-        .video-header {
-            padding: 1.5rem;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(20px);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid rgba(0, 191, 255, 0.3);
-        }
-
-        .video-title {
-            color: #00BFFF;
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .close-modal {
-            background: rgba(0, 191, 255, 0.15);
-            border: 2px solid rgba(0, 191, 255, 0.5);
-            color: #00BFFF;
-            padding: 0.5rem 1.5rem;
-            border-radius: 25px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .close-modal:hover {
-            background: rgba(0, 191, 255, 0.25);
-            color: #00BFFF;
-            transform: scale(1.05);
-            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.5);
-        }
-
-        .video-wrapper {
-            position: relative;
-            width: 100%;
-            padding-bottom: 56.25%;
-            background: #000;
-        }
-
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: rgba(0, 191, 255, 0.05);
-            padding: 3rem;
-            border-radius: 20px;
-            border: 2px solid rgba(0, 191, 255, 0.2);
-            backdrop-filter: blur(20px);
-            box-shadow: 0 10px 40px rgba(0, 191, 255, 0.1);
-            animation: cardSlideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-            opacity: 0;
-            transform: translateY(100px);
-        }
-
-        @keyframes cardSlideUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #00BFFF;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(0, 191, 255, 0.05);
-            border: 2px solid rgba(0, 191, 255, 0.3);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: #00BFFF;
-            box-shadow: 0 0 20px rgba(0, 191, 255, 0.3);
-            background: rgba(0, 191, 255, 0.08);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .submit-button {
-            width: 100%;
-            padding: 1rem;
-            background: rgba(0, 191, 255, 0.15);
-            color: #00BFFF;
-            border: 2px solid rgba(0, 191, 255, 0.5);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-        }
-
-        .submit-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.4);
-            background: rgba(0, 191, 255, 0.25);
-            border-color: #00BFFF;
-        }
-
-        footer {
-            text-align: center;
-            padding: 3rem 5%;
-            background: #000000;
-            border-top: 2px solid rgba(0, 191, 255, 0.2);
-        }
-
-        footer p {
-            color: #888;
-        }
-
-        @media (max-width: 1400px) {
-            .gallery-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-            
-            .vertical-gallery-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 1200px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .vertical-gallery-grid {
-                grid-template-columns: repeat(4, 1fr);
-            }
-        }
-
-        @media (max-width: 868px) {
-            nav ul {
-                gap: 1.5rem;
-                font-size: 0.9rem;
-            }
-
-            nav a {
-                font-size: 0.95rem;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .about-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .about-image {
-                order: 1;
-                width: 100%;
-                max-width: 550px;
-                margin: 0 auto;
-            }
-	    .about-image img {
-                width: 100%;
-                height: auto;
-                object-fit: cover;
-            }
-
-            .about-text {
-                order: 2;
-            }
-
-            .about-image {
-                order: 1;
-            }
-
-            .skills {
-                justify-content: center;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .vertical-gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
-
-            .section-divider h3 {
-                font-size: 1.5rem;
-            }
-
-            .gallery-content h3 {
-                font-size: 1.1rem;
-            }
-
-            .gallery-content p {
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .about-image {
-                max-width: 500px;
-            }
-
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .vertical-gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-
-            .section-divider h3 {
-                font-size: 1.2rem;
-                padding: 0 1rem;
-            }
-
-            .skill-tag {
-                font-size: 0.85rem;
-                padding: 0.5rem 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Portfolio</title>
+  <meta name="description" content="Filmmaker and creative director portfolio.">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Nothing to edit in this file. All text, colours and fonts come from content.js -->
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#work">Work</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Hi, I'm Abhishek Bind</h1>
-            <p>Director • Cinematographer • Editor</p>
-            <a href="#work" class="cta-button">View My Work</a>
-        </div>
-    </section>
-
-    <section id="about">
-        <h2>About Me</h2>
-        <div class="about-content">
-            <div class="about-text">
-                <p>I am Abhishek Bind, a filmmaker who directs, shoots and edits content with a cinematic approach.</p>
-                <p>I create impactful visual stories for brands, creators and personal projects supported by motion graphics, color grading and modern AI tools to transform simple ideas into engaging films, reels and long videos that connect instantly with the audience.</p>
-            </div>
-            <div class="about-image">
-                <img src="https://raw.githubusercontent.com/abhibind/portfolio-image/refs/heads/main/Abhishek-IMG.jpg" alt="Abhishek Bind" style="width: 100%; height: 100%; object-fit: cover; border-radius: 20px;">
-                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border-radius: 20px; cursor: default;" oncontextmenu="return false;"></div>
-            </div>
-        </div>
-        <div class="skills">
-            <span class="skill-tag">Creative Direction</span>
-            <span class="skill-tag">Cinematography</span>
-            <span class="skill-tag">Video Editing</span>
-            <span class="skill-tag">VFX</span>
-            <span class="skill-tag">Storytelling</span>
-            <span class="skill-tag">Color Theory</span>
-            <span class="skill-tag">Color Grading</span>
-            <span class="skill-tag">Lighting</span>
-            <span class="skill-tag">SFX Design</span>
-            <span class="skill-tag">Sound Design</span>
-            <span class="skill-tag">GenAI</span>
-            <span class="skill-tag">Motion Graphics</span>
-        </div>
-    </section>
-    
-    <section id="work">
-        <h2>My Work</h2>
-        
-        <div class="section-divider">
-            <h3>Horizontal Content</h3>
-        </div>
-        
-        <div class="gallery-grid">
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/QsXyP8juI_w/maxresdefault.jpg');" onclick="openVideo('Ek Villain - Personal Video', 'QsXyP8juI_w')">
-                <div class="gallery-content">
-                    <h3>Ek Villain</h3>
-                    <p>Self-directed & self-edited cinematic film where I handled color correction, grading, creative lighting, VFX, and detailed SFX/Sound design.</p>
-                    <span class="video-type">Personal Project</span>
-                </div>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/lIoJkUvp4nE/maxresdefault.jpg');" onclick="openVideo('When to Quit CA - YouTube Facecam', 'lIoJkUvp4nE')">
-                <div class="gallery-content">
-                    <h3>When to Quit CA</h3>
-                    <p>An educational green-screen video enhanced with clean compositing, color grading, motion graphics, and GenAI-generated visuals.</p>
-                    <span class="video-type">YouTube Content</span>
-                </div>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/pnvkeEekNL0/maxresdefault.jpg');" onclick="openVideo('The REAL Pedagogy - ISFB Launch', 'pnvkeEekNL0')">
-                <div class="gallery-content">
-                    <h3>The REAL Pedagogy</h3>
-                    <p>A brand launch video built with ISFB's brand guidlines, featuring dynamic motion graphics and AI-generated classroom to overcome production limitations.</p>
-                    <span class="video-type">Brand Video</span>
-                </div>
-            </div>
-            <div class="gallery-item" style="background-image: url('https://img.youtube.com/vi/1YWbUlts7sE/maxresdefault.jpg');" onclick="openVideo('Imarticus Success Story', '1YWbUlts7sE')">
-                <div class="gallery-content">
-                    <h3>Student Success Story</h3>
-                    <p>A narrative documentary capturing a student's journey, directed and edited with emotional storytelling, GenAI-created scenes, color grading, SFX, and AI narration.</p>
-                    <span class="video-type">Documentary</span>
-                </div>
-            </div>
-        </div>
-
-        <div class="section-divider">
-            <h3>Vertical Content</h3>
-        </div>
-        
-        <div class="vertical-gallery-grid">
-            <div class="gallery-item vertical" style="background-image: url('https://raw.githubusercontent.com/abhibind/portfolio-image/refs/heads/main/Bike.jpg');" onclick="openVideo('Bike Reel - Personal Video', 'frh5YSOgKlk')">
-                <div class="gallery-content">
-                    <h3>Bike Reel</h3>
-                    <p>A cinematic bike sequence capturing my gearing up and riding, enhanced with SFX, exhaust VFX, thunder effects, and clean post-production.</p>
-                    <span class="video-type">Personal Work</span>
-                </div>
-            </div>
-            <div class="gallery-item vertical" style="background-image: url('https://raw.githubusercontent.com/abhibind/portfolio-image/refs/heads/main/DSAILeadGen.jpg');" onclick="openVideo('DSAI leadgen Reel', '2iCstB0P9FM')">
-                <div class="gallery-content">
-                    <h3>DSAI leadgen</h3>
-                    <p>A greenscreen lead-gen ad where the speaker explains course details, visualized through motion graphics, color grading, and sharp storytelling.</p>
-                    <span class="video-type">Leadgen</span>
-                </div>
-            </div>
-            <div class="gallery-item vertical" style="background-image: url('https://raw.githubusercontent.com/abhibind/portfolio-image/refs/heads/main/RajeshCFA.jpg');" onclick="openVideo('CFA Isn’t That Tough', '2jGMaoHA0Kg')">
-                <div class="gallery-content">
-                    <h3>CFA Isn’t That Tough</h3>
-                    <p>A CFA podcast visualizing exam levels and concepts using motion graphics, grading, and SFX.</p>
-                    <span class="video-type">Podcast</span>
-                </div>
-            </div>
-            <div class="gallery-item vertical" style="background-image: url('https://raw.githubusercontent.com/abhibind/portfolio-image/refs/heads/main/TheSecretBehindAmazonSUccess.png');" onclick="openVideo('Amazon’s Success Secret', 'szt0rGqfOWY')">
-                <div class="gallery-content">
-                    <h3>Amazon’s Success Secret</h3>
-                    <p>Explains Amazon's tracking and collaborative filtering using GenAI visuals and motion graphics.</p>
-                    <span class="video-type">Facecam</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="videoModal" class="video-modal">
-        <div class="video-container">
-            <div class="video-header">
-                <div class="video-title" id="videoTitle">Video Title</div>
-                <button class="close-modal" onclick="closeVideo()">Close ✕</button>
-            </div>
-            <div class="video-wrapper">
-                <iframe id="videoFrame" src="" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            </div>
-        </div>
+  <!-- Loading screen -->
+  <div class="intro t-dark" id="intro" aria-hidden="true">
+    <div class="intro-name" id="intro-name"></div>
+    <div class="intro-meta">
+      <span id="intro-role"></span>
+      <span class="intro-num" id="intro-num">000</span>
     </div>
+    <div class="intro-bar"><i id="intro-bar"></i></div>
+  </div>
 
-    <section id="contact">
-        <h2>Get In Touch</h2>
-        <div class="contact-container">
-            <form id="contactForm" action="https://formspree.io/f/mnnladay" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" required></textarea>
-                </div>
-                <button type="submit" class="submit-button">Send Message</button>
-            </form>
-            <div id="formStatus" style="margin-top: 1rem; text-align: center; display: none;"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="mouse-glow" id="mouse-glow" aria-hidden="true"></div>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+
+  <header class="nav t-dark" id="nav">
+    <div class="wrap">
+      <a href="#home" class="brand" id="brand" aria-label="Back to top"></a>
+      <nav aria-label="Main"><ul id="nav-list"></ul></nav>
+      <a href="#contact" class="nav-cta" data-magnetic><i class="dot"></i><span id="nav-cta-text"></span></a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ================= HEADER (dark) ================= -->
+    <section class="hero t-dark" id="home" data-theme="dark">
+      <canvas class="hero-particles" id="particles" aria-hidden="true"></canvas>
+      <div class="hero-vignette" aria-hidden="true"></div>
+      <div class="hero-bg" id="hero-bg" aria-hidden="true"><img id="hero-bg-img" alt=""></div>
+
+      <div class="wrap hero-grid">
+        <div class="hero-meta ani" style="--d:.2s">
+          <span class="eyebrow" id="hero-role"></span>
+          <span class="eyebrow" id="hero-year"></span>
+          <span class="eyebrow hide-sm" id="hero-label"></span>
+          <span class="eyebrow avail" id="hero-avail"></span>
         </div>
+
+        <aside class="hero-side hero-left ani" style="--d:.9s">
+          <span class="idx">01 — Intro</span>
+          <p id="hero-tagline"></p>
+        </aside>
+
+        <div class="hero-stage" id="hero-stage">
+          <figure class="hero-media" id="hero-media">
+            <img id="hero-img" alt="" draggable="false">
+          </figure>
+          <div class="chips" id="chips"></div>
+        </div>
+
+        <aside class="hero-side hero-right ani" style="--d:1s" id="now">
+          <span class="idx" id="now-label">02 — Currently</span>
+          <p class="now-word"><span id="now-word"></span></p>
+          <p class="now-line" id="prompt-text"><span id="typed"></span><span class="caret"></span><span class="ghost" id="ghost"></span></p>
+          <div class="now-actions">
+            <a href="#contact" class="round-btn" id="talk-btn" data-magnetic>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H13l-4.5 4v-4h-2A2.5 2.5 0 0 1 4 13.5z"/><circle cx="8.5" cy="9.5" r=".6"/><circle cx="12" cy="9.5" r=".6"/><circle cx="15.5" cy="9.5" r=".6"/></svg>
+            </a>
+            <button class="round-btn" id="play-btn" type="button" data-magnetic>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path class="fill" d="M8.5 6v12l10-6z"/></svg>
+            </button>
+          </div>
+        </aside>
+
+        <h1 class="hero-name" id="hero-name"></h1>
+        <p class="hero-title ani" id="hero-title" style="--d:1.1s"></p>
+
+        <div class="hero-foot ani" style="--d:1.3s">
+          <div class="actions">
+            <a href="#work" class="btn" data-magnetic>
+              <span data-bind="heroButtons.primary"></span>
+              <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </a>
+            <button class="link-btn" id="showreel-btn" type="button" hidden><span data-bind="heroButtons.showreel"></span></button>
+          </div>
+          <div class="scroll-cue" aria-hidden="true"><i></i><span>Scroll to explore</span></div>
+        </div>
+      </div>
     </section>
 
-    <footer>
-        <p>&copy; 2025 Abhishek Bind. All rights reserved.</p>
-    </footer>
+    <!-- ================= MOVING BAND (white) ================= -->
+    <div class="marquee t-white" id="marquee" data-theme="light" aria-hidden="true"></div>
 
-    <script>
-        function openVideo(title, youtubeId) {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('videoFrame');
-            const videoTitle = document.getElementById('videoTitle');
-            
-            videoTitle.textContent = title;
-            iframe.src = 'https://www.youtube.com/embed/' + youtubeId + '?autoplay=1&rel=0&modestbranding=1';
-            modal.classList.add('active');
-        }
+    <!-- ================= WORK (off-white) ================= -->
+    <section id="work" class="t-light" data-theme="light">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-idx"></span>
+          <h2 data-bind="sections.work.title"></h2>
+          <span class="eyebrow sec-sub" data-bind="sections.work.subtitle" data-hide-empty></span>
+          <div class="filters" id="filters"></div>
+        </div>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
 
-        function closeVideo() {
-            const modal = document.getElementById('videoModal');
-            const iframe = document.getElementById('videoFrame');
-            
-            iframe.src = '';
-            modal.classList.remove('active');
-        }
+    <!-- ================= ABOUT (dark grey) ================= -->
+    <section id="about" class="t-grey" data-theme="dark">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-idx"></span>
+          <h2 data-bind="sections.about.title"></h2>
+          <span class="eyebrow sec-sub" data-bind="sections.about.subtitle" data-hide-empty></span>
+        </div>
+        <div class="about-grid">
+          <div class="about-visual reveal" id="about-visual">
+            <div class="about-img" id="about-img"></div>
+            <div class="about-badge glass" id="about-badge"></div>
+            <div class="about-ctrl">
+              <span class="about-count" id="about-count"></span>
+              <div class="about-bars" id="about-bars"></div>
+            </div>
+          </div>
+          <div class="about-text">
+            <h3 id="about-heading" class="reveal"></h3>
+            <div class="about-paras" id="about-paras"></div>
+            <div class="stats reveal" id="stats"></div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        document.getElementById('videoModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeVideo();
-            }
-        });
+    <!-- ================= SERVICES (white) ================= -->
+    <section id="services" class="t-white" data-theme="light">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-idx"></span>
+          <h2 data-bind="sections.services.title"></h2>
+          <span class="eyebrow sec-sub" data-bind="sections.services.subtitle" data-hide-empty></span>
+        </div>
+        <div class="services" id="services-list"></div>
+      </div>
+    </section>
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeVideo();
-            }
-        });
+    <!-- ================= CONTACT (near black) ================= -->
+    <section id="contact" class="t-dark" data-theme="dark">
+      <div class="contact-glow" aria-hidden="true"></div>
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="sec-idx"></span>
+          <h2 data-bind="sections.contact.title"></h2>
+          <span class="eyebrow sec-sub" data-bind="sections.contact.subtitle" data-hide-empty></span>
+        </div>
+        <div class="contact-grid">
+          <div class="reveal">
+            <p class="contact-big" id="contact-big"></p>
+            <div class="mail-row">
+              <a id="email-link" class="mail" href="#" data-magnetic="0.15"></a>
+              <button id="copy-btn" class="copy glass" type="button"></button>
+            </div>
+            <div id="contact-socials" class="socials"></div>
+          </div>
+          <form id="form" class="form glass reveal" method="POST" style="--d:120ms">
+            <div class="field"><input id="name" name="name" type="text" placeholder=" " autocomplete="name" required><label for="name" data-bind="contact.labels.name"></label></div>
+            <div class="field"><input id="email" name="email" type="email" placeholder=" " autocomplete="email" required><label for="email" data-bind="contact.labels.email"></label></div>
+            <div class="field"><textarea id="message" name="message" placeholder=" " required></textarea><label for="message" data-bind="contact.labels.message"></label></div>
+            <button type="submit" class="btn" id="send-btn" data-magnetic>
+              <span id="send-label" data-bind="contact.labels.button"></span>
+              <svg class="arr" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>
+            </button>
+            <p class="status" id="status" role="status"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
+  <footer class="t-dark" data-theme="dark">
+    <div class="wrap">
+      <div class="foot-row">
+        <span id="footer-copy"></span>
+        <div class="socials" id="socials"></div>
+        <button class="to-top" id="to-top" type="button">Back to top <span aria-hidden="true">↑</span></button>
+      </div>
+    </div>
+  </footer>
 
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const form = e.target;
-            const formData = new FormData(form);
-            const statusDiv = document.getElementById('formStatus');
-            const submitButton = form.querySelector('.submit-button');
-            
-            submitButton.disabled = true;
-            submitButton.textContent = 'Sending...';
-            
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    statusDiv.style.display = 'block';
-                    statusDiv.style.color = '#4ade80';
-                    statusDiv.textContent = '✓ Message sent successfully! I will get back to you soon.';
-                    form.reset();
-                } else {
-                    throw new Error('Failed to send message');
-                }
-            })
-            .catch(error => {
-                statusDiv.style.display = 'block';
-                statusDiv.style.color = '#ff4081';
-                statusDiv.textContent = '✗ Oops! Something went wrong. Please try again.';
-            })
-            .finally(() => {
-                submitButton.disabled = false;
-                submitButton.textContent = 'Send Message';
-                setTimeout(() => {
-                    statusDiv.style.display = 'none';
-                }, 5000);
-            });
-        });
+  <!-- Video viewer -->
+  <div class="modal t-dark" id="modal" role="dialog" aria-modal="true" aria-label="Video" data-lenis-prevent>
+    <div class="modal-top">
+      <button class="modal-size" id="modal-size" type="button" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><g class="i-out"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></g><g class="i-in"><path d="M4 14h6v6M20 10h-6V4M14 10l7-7M3 21l7-7"/></g></svg>
+        <span id="modal-size-label">Expand video</span>
+      </button>
+      <button class="modal-close" id="modal-close" type="button">Close <span aria-hidden="true">✕</span></button>
+    </div>
+    <div class="modal-inner" id="modal-inner"></div>
+  </div>
 
-        const observerOptions = {
-            threshold: 0.2,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('section:not(.hero)').forEach(section => {
-            section.style.opacity = '0';
-            section.style.transform = 'translateY(30px)';
-            section.style.transition = 'all 0.8s ease-out';
-            observer.observe(section);
-        });
-    </script>
+  <script src="content.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
