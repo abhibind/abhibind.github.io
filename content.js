@@ -100,7 +100,7 @@ const SITE = {
     layout: "center",
     opacity: 0.35,                         // only for "background": photo strength, 0 to 1
     year: "2026",                          // small "Year 2026." label ("" = hide)
-    label: "Portfolio / Vol. 01",          // small label in the top row ("" = hide)
+    label: "Portfolio",          // small label in the top row ("" = hide)
 
     // Glass cards floating around the photo (they glide away from the mouse). Use 2 to 4.
     chips: [
@@ -233,78 +233,78 @@ const SITE = {
       category: "Brand",
       year: "2026",
       client: "Artium Academy",
-      role: "Director, Cinematographer, Editor",
+      role: "Editor, Motion Designer",
       format: "horizontal",
       youtube: "wXz7uEpQGME",
       thumbnail: "",
       description:
-        "It's a short film about a young man who must choose between his dream of becoming a cricketer and his family responsibilities. It’s a story about dreams, and the sacrifices we make in life.",
-      tools: ["Sound Design", "Visual Storytelling", "Colour Grading"],
+        "A film made for Sonu Nigam’s London concert. I edited the whole thing: sound design, motion graphics and compositing.",
+      tools: ["Sound Design", "Motion Graphics", "Compositing"],
     },
     {
       title: "Artium | Business Showcase",
       category: "Brand",
       year: "2026",
       client: "Artium Academy",
-      role: "Director, Cinematographer, Editor",
+      role: "Director, Editor, Motion Designer",
       format: "horizontal",
       youtube: "smGodYCAxL8",
       thumbnail: "",
       description:
-        "It's a short film about a young man who must choose between his dream of becoming a cricketer and his family responsibilities. It’s a story about dreams, and the sacrifices we make in life.",
-      tools: ["Sound Design", "Visual Storytelling", "Colour Grading"],
+        "Made for investors who needed to understand what Artium is and what it offers.",
+      tools: ["Corporate Film", "Visual Storytelling", "Motion Graphics"],
     },
     {
-      title: "The Cost of Time: Sacrifice | Short Film",
+      title: "The Cost of Time: Sacrifice",
       category: "Personal",
       year: "2025",
-      client: "Self-initiated",
-      role: "Director, Cinematographer, Editor",
+      client: "Cinetellex (Personal)",
+      role: "Writer, Director, DOP, Editor",
       format: "horizontal",
       youtube: "Pdmp1P3y0eY",
       thumbnail: "",
       description:
-        "It's a short film about a young man who must choose between his dream of becoming a cricketer and his family responsibilities. It’s a story about dreams, and the sacrifices we make in life.",
-      tools: ["Sound Design", "Visual Storytelling", "Colour Grading"],
+        "A young man has to choose between his dream of becoming a cricketer and his family’s responsibilities. It’s a story about dreams and the sacrifices we make. I wrote, directed, shot and edited it myself.",
+      tools: ["Screenplay", "Cinematography", "Visual Storytelling"],
     },
     {
-      title: "Legends Of Cibop",
+      title: "Legends Of CIBOP",
       category: "Performance",
       year: "2026",
       client: "Imarticus Learning",
-      role: "Director, Editor",
+      role: "Director, DOP, Editor",
       format: "horizontal",
       youtube: "oEboJQ78XC0",
       thumbnail: "",
       description:
-        "A brand launch film built on ISFB's brand guidelines, with dynamic motion graphics and an AI-generated classroom to overcome production limitations.",
-      tools: ["Brand Film", "Motion Graphics", "GenAI"],
+        "A film for CIBOP learners from Imarticus who now work at Goldman Sachs, Morgan Stanley, BNY and other big firms. Shot with the founder, who features in it. I directed, shot and edited it.",
+      tools: ["Direction", "Motion Graphics", "Interview"],
     },
     {
       title: "ISFB Campus Walkthrough",
       category: "Brand",
       year: "2026",
       client: "Imarticus School of Finance & Business ",
-      role: "Director, Editor",
+      role: "DOP, Editor",
       format: "horizontal",
       youtube: "h3xiFr350_8",
       thumbnail: "",
       description:
-        "A narrative documentary following a student's journey, with emotional storytelling, GenAI scenes, colour grading, SFX and AI narration.",
-      tools: ["Documentary", "GenAI", "Sound Design"],
+        "A launch film that walks through ISFB’s classrooms, meeting room, gaming room and library, and shows what students can look forward to. Cameras weren’t allowed to show the campus building, so I built those shots from still images using AI. I shot the B-roll and edited the full film.",
+      tools: ["Brand Launch", "GenAI", "Cinematography"],
     },
     {
       title: "Full Roadmap: Investment Banking as a Fresher",
       category: "Social",
       year: "2026",
       client: "Imarticus Learning",
-      role: "Editor, Motion Designer",
+      role: "DOP, Editor",
       format: "horizontal",
       youtube: "UrpRGbr3IWQ",
       thumbnail: "",
       description:
         "An educational green-screen video with clean compositing, colour grading, motion graphics and GenAI-generated visuals.",
-      tools: ["Compositing", "Motion Graphics", "GenAI"],
+      tools: ["Motion Graphics", "Storytelling", "Educational"],
     },
 
     {
