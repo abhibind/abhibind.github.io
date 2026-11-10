@@ -634,6 +634,18 @@ footer { position: relative; padding: 0 0 1.5rem; }
 .p-seek::-moz-range-thumb, .p-vol::-moz-range-thumb { width: 12px; height: 12px; border: 0; border-radius: 50%; background: #fff; }
 .p-seek:focus-visible, .p-vol:focus-visible { outline: none; }
 .modal-inner.vertical .p-btn { width: 36px; height: 36px; }
+.p-cc { font-size: .68rem; font-weight: 600; letter-spacing: .04em; opacity: .55; }
+.p-cc[aria-pressed="true"] { opacity: 1; text-decoration: underline; text-underline-offset: 3px; }
+/* Narrow players (vertical videos, phones): keep mute + fullscreen visible */
+.player { container-type: inline-size; }
+@container (max-width: 440px) {
+  .p-bar { padding-left: .4rem; padding-right: .4rem; }
+  .p-vol { display: none; }
+  .player .p-row .p-btn { width: 32px; height: 32px; }
+  .p-time { font-size: .68rem; margin-left: .15rem; }
+}
+@container (max-width: 320px) { .p-back, .p-fwd { display: none; } }
+@container (max-width: 200px) { .p-time { display: none; } }
 
 /* =====================================================================
    RESPONSIVE

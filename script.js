@@ -773,8 +773,9 @@
   function ytAdapter(id, slot, startMuted) {
     const m = { onevent() {}, ready: false, dead: false };
     const parent = slot.parentNode;
-    let p, st = -2, poll, key = "", everPlayed = false, triedAlt = false;
+    let p, st = -2, poll, key = "", everPlayed = false, triedAlt = false, ccOn = false, triedUnmute = false;
     const call = (fn, ...a) => { try { return p && m.ready ? p[fn](...a) : undefined; } catch (e) { return undefined; } };
+    const noCC = () => { if (!ccOn) call("unloadModule", "captions"); };
     const create = (YT, el, host) => {
       p = new YT.Player(el, {
         videoId: id, host,
@@ -784,7 +785,7 @@
             if (m.dead) return;
             m.ready = true;
             call("playVideo");
-            setTimeout(() => { if (!m.dead && !everPlayed && st !== 3) { call("mute"); call("playVideo"); } }, 1500);
+            setTimeout(() => { if (!m.dead && !everPlayed && st !== 3) { m.autoMuted = true; call("mute"); call("playVideo"); } }, 1500);
             if (!poll) poll = setInterval(() => {
               m.onevent("tick");
               const k = m.isMuted() + "|" + m.vol();
@@ -794,7 +795,14 @@
           },
           onStateChange: (e) => {
             st = e.data;
-            if (st === 1) { everPlayed = true; m.onevent("play"); m.onevent("playing"); }
+            if (st === 1) {
+              everPlayed = true; noCC(); m.onevent("play"); m.onevent("playing");
+              // Browser forced a muted start: try sound once, stay muted if it refuses
+              if (m.autoMuted && !triedUnmute) {
+                triedUnmute = true; call("unMute");
+                setTimeout(() => { if (!m.dead && st !== 1) { call("mute"); call("playVideo"); } else m.autoMuted = false; }, 600);
+              }
+            }
             else if (st === 2) m.onevent("pause");
             else if (st === 3) m.onevent("waiting");
             else if (st === 0) m.onevent("ended");
@@ -812,6 +820,7 @@
             }
             m.onevent("error", code);
           },
+          onApiChange: noCC,
         },
       });
     };
@@ -828,6 +837,7 @@
       vol: () => (call("getVolume") ?? 100) / 100,
       mute: (b) => call(b ? "mute" : "unMute"),
       setVol: (x) => call("setVolume", Math.round(x * 100)),
+      cc: (b) => { ccOn = b; if (b) call("loadModule", "captions"); else noCC(); },
       destroy: () => { m.dead = true; clearInterval(poll); try { p && p.destroy(); } catch (e) {} },
     });
     return m;
@@ -846,7 +856,7 @@
     Object.entries(map).forEach(([ev, out]) => v.addEventListener(ev, () => m.onevent(out)));
     v.muted = !!startMuted;
     const pr = v.play();
-    if (pr && pr.catch) pr.catch(() => { v.muted = true; v.play().catch(() => {}); });
+    if (pr && pr.catch) pr.catch(() => { m.autoMuted = true; v.muted = true; v.play().catch(() => {}); });
     Object.assign(m, {
       el: v,
       play: () => { const q = v.play(); if (q && q.catch) q.catch(() => {}); },
@@ -884,6 +894,7 @@
           <button class="p-btn p-fwd" aria-label="Forward ${SKIP} seconds">${ICON.fwd}</button>
           <span class="p-time">0:00 / 0:00</span>
           <span class="p-gap"></span>
+          ${id ? `<button class="p-btn p-cc" aria-label="Captions" aria-pressed="false">CC</button>` : ""}
           <button class="p-btn p-mute" aria-label="Mute">${ICON.vol}</button>
           <input class="p-vol" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume">
           <button class="p-btn p-full" aria-label="Fullscreen">${ICON.full}</button>
@@ -912,6 +923,7 @@
     };
     const skip = (sec) => { if (media.dur()) doSeek((fake && performance.now() < fake.until ? fake.t : media.time()) + sec); };
     const mute = () => {
+      media.autoMuted = false;
       const off = media.isMuted() || media.vol() === 0;
       if (off) { media.mute(false); if (media.vol() === 0) media.setVol(0.6); } else media.mute(true);
     };
@@ -952,6 +964,15 @@
     $(".p-fwd", wrap).addEventListener("click", () => skip(SKIP));
     $(".p-mute", wrap).addEventListener("click", mute);
     $(".p-full", wrap).addEventListener("click", full);
+    const ccBtn = $(".p-cc", wrap);
+    if (ccBtn) ccBtn.addEventListener("click", () => {
+      const on = ccBtn.getAttribute("aria-pressed") !== "true";
+      ccBtn.setAttribute("aria-pressed", on); media.cc(on);
+    });
+    // If the browser started the video muted, the first tap on the player turns the sound on
+    wrap.addEventListener("pointerdown", (e) => {
+      if (media.autoMuted && !e.target.closest(".p-mute, .p-vol")) { media.autoMuted = false; media.mute(false); }
+    });
     vol.addEventListener("input", () => { media.setVol(+vol.value); media.mute(+vol.value === 0); });
     seek.addEventListener("input", () => {
       scrubbing = true;
