@@ -175,15 +175,15 @@ const SITE = {
     imageAlt: "Portrait of Abhishek Bind",
     heading: "A filmmaker with a cinematic approach.",
     paragraphs: [
-      "I am Abhishek Bind, a filmmaker who directs, shoots and edits content with a cinematic approach.",
-      "I create impactful visual stories for brands, creators and personal projects, supported by motion graphics, colour grading and modern AI tools, transforming simple ideas into films, reels and long-form videos that connect instantly with the audience.",
+      "I’m Abhishek Bind. I don’t see myself as someone who just makes videos. I’m there to make the content better than the brief I was given.",
+      "I take ownership and care about the small decisions, like the pause before a line, the light on a face or the one shot that says it all, because those are what people remember.   Whether it’s a brand story or a short film, my job is the same: find the simplest way to say it, and make it look and sound like it matters.",
     ],
   },
 
   // Numbers that count up. Examples: "50+", "4+", "1.5K", "₹2M". Use [] for none.
   stats: [
-    { value: "50+", label: "Films delivered" },
-    { value: "4+",  label: "Years of experience" },
+    { value: "200+", label: "Videos delivered" },
+    { value: "5+",  label: "Years of experience" },
     { value: "20+", label: "Brands & creators" },
   ],
 
