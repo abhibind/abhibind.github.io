@@ -33,7 +33,7 @@ const SITE = {
   role: "Creative Director",                  // shown large under your name, and at the top of the header
   disciplines: "Direction · Cinematography · Editing",
   tagline:
-    "I direct, shoot and edit films with a cinematic eye, turning simple ideas into stories that connect instantly.",
+    "Filmmaker from Mumbai. I direct short films with my team at Cinetellex and lead productions from guru interviews in Rishikesh to live events, podcasts and brand films, with motion graphics and AI visuals built in, first idea to last cut.",
   email: "ak.rk.bind@gmail.com",
   availability: "Available for new projects", // small line with a glowing dot ("" = hide)
   showreel: "",                               // YouTube link/ID of your showreel (or an .mp4 file name), or "" to hide
@@ -113,10 +113,10 @@ const SITE = {
     // "Currently" panel on the right: the big word changes and the line is typed out.
     nowLabel: "02 — Currently",
     prompts: [
-      { status: "Directing",  text: "Warm highlights, deep shadows, one clear idea in every frame." },
-      { status: "Editing",    text: "Cutting to the beat. Every frame has to earn its place." },
-      { status: "Grading",    text: "True skin tones, rich blacks, colour that feels like memory." },
-      { status: "Generating", text: "GenAI scenes that go beyond what the budget could shoot." },
+      { status: "Directing",  text: "I decide how a story feels and where it goes. One clear idea in every frame." },
+      { status: "Cinematography",    text: "Camera, light and movement. Every frame has to earn its place." },
+      { status: "Editing",    text: "Cuts, colour and sound that keep people watching." },
+      { status: "Motion & AI", text: "Motion graphics, VFX and Gen AI video, used when they make the story better." },
     ],
   },
   heroButtons: {
