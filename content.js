@@ -192,10 +192,10 @@ const SITE = {
      8. SERVICES  (copy a { } block to add one, delete a block to remove)
      ------------------------------------------------------------------ */
   services: [
-    { title: "Creative Direction", text: "Concept, script, look and feel, shaping an idea into a clear visual language." },
-    { title: "Cinematography",     text: "Lighting, framing and camera work built to serve the story." },
-    { title: "Editing & Post",     text: "Pacing, colour grading, motion graphics, VFX, sound and SFX design." },
-    { title: "GenAI Production",   text: "AI-generated scenes, narration and visuals that overcome production limits." },
+    { title: "Creative Direction", text: "I start with the idea, then write it, plan it and decide how it should look and feel." },
+    { title: "Cinematography",     text: "Lighting, framing and camera movement, built to serve the story." },
+    { title: "Editing & Post",     text: "Pacing, colour grading, motion graphics, VFX and sound design." },
+    { title: "GenAI Production",   text: "AI scenes, narration and visuals that overcome production limits." },
   ],
 
 
